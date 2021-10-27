@@ -31,8 +31,7 @@ char *_strdup(char *str)
 			return (cpstr);
 		}
 		else
-		{																	{
-																				return (NULL);
+		{																		return (NULL);
 																			}
 		}
 }
