@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stddef.h>
 #include "lists.h"
 /**
  * print_list - A function that prints all the elements
@@ -11,8 +10,8 @@
  */
 size_t print_list(const list_t *h)
 {
+	int count = 0;
 	const list_t *node = h;
-	unsigned int count = 0;
 
 	while (node != NULL)
 	{
