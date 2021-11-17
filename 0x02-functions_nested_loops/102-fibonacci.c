@@ -12,7 +12,7 @@ int main(void)
 	a = 1;
 	b = 2;
 
-	printf("1, 2, ");
+	printf("1, 2");
 	for (i = 0; i < 48; i++)
 	{
 		c = a + b;
@@ -21,7 +21,7 @@ int main(void)
 		b = c;
 		c = a + b;
 	}
-
+	printf("\n");
 
 	return (0);
 }
