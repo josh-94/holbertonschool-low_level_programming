@@ -2,7 +2,7 @@
 /**
  * read_textfile - function that reads a text
  * file and prints it to the POSIX standard output.
- * @filename: filename
+ * @filename: file name
  * @letters: size
  * Return: 0
  */
