@@ -5,4 +5,6 @@ int _isupper(int c);
 void print_line(int n);
 void print_diagonal(int n);
 int _isdigit(int c);
+int mul(int a, int b);
+
 #endif
