@@ -1,70 +1,44 @@
 #include "hash_tables.h"
 /**
- * hash_table_set - Adds an element to the hash table
- * @ht: Is the hash table you want to add or update the key/value to
- * @key: is the key
- * @value: Is the value associated with the key
- *
- * Return: 1 if it succeeded, 0 otherwise
+ * hash_table_set - function that adds an element to the hash table
+ * @ht: Structure
+ * @key: key
+ * @value: Value of the key
+ * Return: 1 in success or 0 in failure
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	hash_node_t *node = NULL, **ptr = NULL;
-	unsigned long int index = 0;
+	hash_node_t *hash_node = NULL;
+	hash_node_t *new_node = NULL;
+	char *new_value = NULL;
+	char *new_key = NULL;
+	unsigned long int key_idx = 0;
 
-	if (!ht || !key || !strcmp(key, "") || !value)
+	if (!ht || !key || !(ht->array))
 		return (0);
-	node = malloc(sizeof(hash_node_t));
-	if (node == NULL)
+	key_idx = key_index((const unsigned char *)key, ht->size);
+	new_value = strdup(value);
+	hash_node = ht->array[key_idx];
+	while (hash_node)
 	{
-		return (0);
-	}
-	index = key_index((unsigned char *)key, ht->size);
-	ptr = &(ht->array[index]);
-	node->key = strdup(key);
-	node->value = strdup(value);
-	node->next = NULL;
-	set_check(ptr, &node);
-
-	return (1);
-}
-
-
-/**
- * set_check - set and check nodes
- * @head: pointing to hash_node in the hash table
- * @node: node to add in the index of the hash table
- *
- * Return: Nothing
- */
-void set_check(hash_node_t **head, hash_node_t **node)
-{
-	hash_node_t *tail = *head;
-
-	if (!head)
-	{
-		free((*node)->key);
-		free((*node)->value);
-		free(*node);
-		return;
-	}
-	if (*head)
-	{
-		while (tail)
+		if (strcmp(hash_node->key, key) == 0)
 		{
-			if (strcmp(tail->key, (*node)->key) == 0)
-			{
-				free(tail->value);
-				tail->value = strdup((*node)->value);
-				free((*node)->value);
-				free((*node)->key);
-				free(*node);
-				return;
-			}
-			tail = tail->next;
+			free(hash_node->value);
+			hash_node->value = new_value;
+			return (1);
 		}
+		hash_node = hash_node->next;
 	}
-
-	(*node)->next = *head;
-	*head = *node;
+	new_node = malloc(sizeof(hash_node_t));
+	if (new_node == NULL)
+	{
+		free(new_value);
+		return (0);
+	}
+	new_key = strdup(key);
+	new_node->key = new_key;
+	new_node->value = new_value;
+	new_node->next = ht->array[key_idx];
+	ht->array[key_idx] = new_node;
+	return (1);
 }
