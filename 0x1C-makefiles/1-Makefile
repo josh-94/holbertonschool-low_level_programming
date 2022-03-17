@@ -1,0 +1,6 @@
+#Makefile using variables SRC, CC
+SRC = main.c school.c
+CC = gcc
+all: school
+school: $(SRC)
+	$(CC) $(SRC) -o school
