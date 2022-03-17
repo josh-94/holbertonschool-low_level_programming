@@ -1,0 +1,8 @@
+#Makefile using variables CC,SRC,OBJ,NAME
+SRC = main.c school.c
+CC = gcc
+OBJ = $(SRC:%.c=%.o) 
+NAME = school
+all: school
+school: $(OBJ)
+	$(CC) $(OBJ) $ -o $(NAME)
