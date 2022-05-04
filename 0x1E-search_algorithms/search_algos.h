@@ -1,5 +1,5 @@
 #ifndef SEARCH_ALGOS
-#define SEAR
+#define SEARCH_ALGOS
 /*Libraries*/
 #include <stdio.h>
 
