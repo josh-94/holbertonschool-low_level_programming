@@ -30,6 +30,13 @@ int binary_search(int *array, size_t size, int value)
 	return (-1);
 }
 
+/**
+ * print_arr - function to print excersice as resquested.
+ * @array: is a pointer to the first element of the array to sear    ch in.
+ * @right: right element of array.
+ * @left: left element of array.
+ */
+
 void print_arr(int *array, int left, int right)
 {
 	printf("Searching in array: ");
